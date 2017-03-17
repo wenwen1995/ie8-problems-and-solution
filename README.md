@@ -5,7 +5,7 @@ ie8_problems and solution
 
   排查了各种原因，找了部门的前端老大一起解决了半个小时，终于解决了。
 
-**问题是：自己所写的js方法根本就没有加载，后来写了最简单的js,alert(11)；也不执行！**
+**问题1是：自己所写的js方法根本就没有加载，后来写了最简单的js,alert(11)；也不执行！**
 
    原来是js文件没有执行！！
 
@@ -33,3 +33,19 @@ ie8_problems and solution
   即上面有淡黄色的提示，表示设置成功，这时不要管提示信息，点击关闭，隐藏此信息，再按ctrl+f5强制刷新一下要进入的页面，
 
   *之后就成功啦~~*
+
+**问题2：如何获取select下选中的option值**
+
+    用jquery很好解决：
+	$('#select option:selected').val();
+	
+
+	但是对于ie低版本来说是不支持伪类的写法的，所以这里采用原生的js:
+	var sel = document.getElementById('select');
+	var selectIndex = sel.selectedIndex;
+	var selectedValue；
+	if(selectIndex){ //如果option有被选中，则获取对应的value值
+	  selectedValue = sel.options[selectIndex].value;
+	}else{ //如果option未被选中，则获取默认的value值
+	  selectedValue = document.getElementByName('myselect')[0].value;
+	}
